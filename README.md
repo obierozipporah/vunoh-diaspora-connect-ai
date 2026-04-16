@@ -1,1 +1,3 @@
 # vunoh-diaspora-connect-ai
+This is an AI-powered web application built to solve a specific, real-world problem for Kenyans living abroad. Often, members of the diaspora struggle to manage important tasks back home, relying on slow, informal channels like phone calls, word of mouth, or WhatsApp messages to relatives. Because these methods are unreliable and leave no audit trail when things go wrong, this platform provides a centralized, intelligent alternative.The application acts as a smart assistant that helps customers seamlessly initiate, manage, and track essential core services from overseas.
+
