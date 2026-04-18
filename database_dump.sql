@@ -1,6 +1,47 @@
 BEGIN TRANSACTION;
 CREATE TABLE "assistant_task" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "task_code" varchar(15) NOT NULL UNIQUE, "intent" varchar(50) NOT NULL, "entities" text NOT NULL CHECK ((JSON_VALID("entities") OR "entities" IS NULL)), "generated_steps" text NOT NULL CHECK ((JSON_VALID("generated_steps") OR "generated_steps" IS NULL)), "risk_score" integer NULL, "status" varchar(20) NOT NULL, "employee_assignment" varchar(50) NOT NULL, "whatsapp_message" text NOT NULL, "email_message" text NOT NULL, "sms_message" varchar(160) NOT NULL, "created_at" datetime NOT NULL);
-INSERT INTO "assistant_task" VALUES(1,'VN-9203A1','send_money','{"amount": "15000", "currency": "KES", "location": "Kisumu"}','["Verify user identity", "Confirm recipient details", "Initiate transfer"]',80,'Pending','Finance','Hey! We are processing your transfer to Kisumu right now. Your reference is VN-9203A1.','Dear Customer, your request to send funds to Kisumu has been initiated. Task Reference: VN-9203A1.','Vunoh: Transfer initiated. Ref: VN-9203A1','2026-04-18 10:11:34.337433');
+INSERT INTO "assistant_task" VALUES(1,'VN-9203A1','send_money','{"amount": "15000", "currency": "KES", "location": "Kisumu"}','["Verify user identity", "Confirm recipient details", "Initiate transfer"]',80,'In Progress','Finance','Hey! We are processing your transfer to Kisumu right now. Your reference is VN-9203A1.','Dear Customer, your request to send funds to Kisumu has been initiated. Task Reference: VN-9203A1.','Vunoh: Transfer initiated. Ref: VN-9203A1','2026-04-18 10:11:34.337433');
+INSERT INTO "assistant_task" VALUES(2,'VN-99C8A5','send_money','{"amount": "15000", "currency": "KES", "location": "Kisumu"}','["Verify user identity", "Confirm recipient details", "Initiate transfer"]',80,'Pending','Finance','Hey! We are processing your transfer to Kisumu right now. Your reference is VN-99C8A5.','Dear Customer, your request to send funds to Kisumu has been initiated. Task Reference: VN-99C8A5.','Vunoh: Transfer initiated. Ref: VN-99C8A5','2026-04-18 10:34:41.193546');
+INSERT INTO "assistant_task" VALUES(3,'VN-4EF0EF','send_money','{"amount": "15000", "currency": "KES", "location": "Kisumu"}','["Verify user identity", "Confirm recipient details", "Initiate transfer"]',80,'Pending','Finance','Hey! We are processing your transfer to Kisumu right now. Your reference is VN-4EF0EF.','Dear Customer, your request to send funds to Kisumu has been initiated. Task Reference: VN-4EF0EF.','Vunoh: Transfer initiated. Ref: VN-4EF0EF','2026-04-18 10:35:59.508914');
+INSERT INTO "assistant_task" VALUES(4,'VN-18E9CD','hire_service','{"service_type": "cleaner"}','["Confirm specific cleaning requirements and location details with the client.", "Source and vet suitable cleaning service providers.", "Schedule the cleaning service at the client''s preferred time.", "Oversee service delivery and conduct a quality check.", "Process payment to the cleaning service provider."]',20,'Completed','Operations','Hi there! 👋 We''ve received your request to hire a cleaner. We''ll get started on finding the best fit for you. Your task code is VN-18E9CD. We''ll be in touch soon! 🧹','Subject: Vunoh Global - Cleaning Service Request Confirmation - VN-18E9CD
+
+Dear Client,
+
+This email confirms that we have received your request to hire a cleaning service. Our Operations team is now actively working to source and schedule a suitable cleaner based on your needs.
+
+Task Code: VN-18E9CD
+Service Requested: Cleaning Service
+
+We will contact you shortly to confirm specific details and provide an update on the progress. Thank you for choosing Vunoh Global.
+
+Sincerely,
+The Vunoh Global Team','Vunoh Global: Your request to hire a cleaner has been received. Task Code: VN-18E9CD. We''ll update you soon.','2026-04-18 10:57:07.558568');
+INSERT INTO "assistant_task" VALUES(5,'VN-D5795A','verify_document','{"document_type": "land title deed", "location": "Karen"}','["Obtain a copy of the land title deed from the client.", "Submit the title deed copy to the relevant land registry office in Nairobi.", "Conduct a search to verify the authenticity and ownership details of the title deed.", "Obtain an official search report from the land registry.", "Provide the client with the verified report and any recommendations."]',85,'Pending','Legal','Hi there! 👋 We''ve received your request to verify your land title deed for the plot in Karen. Our legal team is on it! Your task code is VN-D5795A. We''ll keep you updated. 🇰🇪','Subject: Vunoh Global - Land Title Deed Verification Request - Task VN-D5795A
+
+Dear Client,
+
+This email confirms receipt of your request to verify your land title deed for the plot located in Karen. Your unique task code is VN-D5795A.
+
+Our Legal department will be handling this request. We will proceed with the necessary steps to verify the authenticity and ownership details of the title deed through the relevant land registry offices.
+
+You will be notified of the progress and the outcome of the verification process.
+
+Thank you for choosing Vunoh Global.
+
+Sincerely,
+The Vunoh Global Team','Your request to verify a land title deed for the Karen plot has been received. Task code: VN-D5795A. We''ll update you soon.','2026-04-18 11:00:41.104001');
+INSERT INTO "assistant_task" VALUES(6,'VN-932988','hire_service','{"service_type": "cleaning", "location": "Westlands", "date": "Friday", "item": "apartment"}','["Confirm specific cleaning requirements and preferred time with the client.", "Identify and vet suitable cleaning personnel for the Westlands area.", "Schedule the cleaning service for the apartment on Friday.", "Oversee the cleaning process to ensure quality standards are met.", "Confirm completion of service and client satisfaction."]',20,'In Progress','Operations','Hi there! 👋 We''ve received your request to have your apartment in Westlands cleaned this Friday. We''ll get this sorted for you! Your task code is VN-932988.','Subject: Vunoh Global - Service Request Confirmation VN-932988
+
+Dear Client,
+
+This email confirms your request for a cleaning service for your apartment located in Westlands, scheduled for this Friday. Your unique task code is VN-932988.
+
+Our Operations team will now proceed to identify and schedule suitable personnel to fulfill this request. We will keep you updated on the progress and confirm the exact timing.
+
+Thank you for choosing Vunoh Global.
+
+Sincerely,
+The Vunoh Global Team','Your cleaning request for Westlands on Friday is confirmed. Task code: VN-932988. We''re on it!','2026-04-18 11:01:13.257015');
 CREATE TABLE "auth_group" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "name" varchar(150) NOT NULL UNIQUE);
 CREATE TABLE "auth_group_permissions" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "group_id" integer NOT NULL REFERENCES "auth_group" ("id") DEFERRABLE INITIALLY DEFERRED, "permission_id" integer NOT NULL REFERENCES "auth_permission" ("id") DEFERRABLE INITIALLY DEFERRED);
 CREATE TABLE "auth_permission" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "content_type_id" integer NOT NULL REFERENCES "django_content_type" ("id") DEFERRABLE INITIALLY DEFERRED, "codename" varchar(100) NOT NULL, "name" varchar(255) NOT NULL);
@@ -87,5 +128,5 @@ INSERT INTO "sqlite_sequence" VALUES('django_content_type',7);
 INSERT INTO "sqlite_sequence" VALUES('auth_permission',28);
 INSERT INTO "sqlite_sequence" VALUES('auth_group',0);
 INSERT INTO "sqlite_sequence" VALUES('auth_user',0);
-INSERT INTO "sqlite_sequence" VALUES('assistant_task',1);
+INSERT INTO "sqlite_sequence" VALUES('assistant_task',6);
 COMMIT;

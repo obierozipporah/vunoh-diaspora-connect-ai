@@ -4,29 +4,42 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vunoh - Diaspora Assistant</title>
+    <title>Vunoh Global - Customer Request</title>
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
 </head>
 <body>
-    <div class="container">
-        <div style="display: flex; justify-content: space-between; align-items: center;">
-            <h1>Vunoh Assistant</h1>
-            <a href="/dashboard" style="color: var(--primary);">Go to Dashboard</a>
+    <nav class="top-nav">
+        <div class="logo-area">
+            <span class="logo-icon">❖</span> VUNOH
         </div>
-        
-        <div class="card">
-            <h2>How can we help you back home?</h2>
-            <p>Enter your request in plain English (e.g., "I need to send KES 15,000 to my mother in Kisumu urgently.")</p>
-            
-            <form id="request-form">
-                <textarea id="user-input" rows="4" placeholder="Type your request here..." required></textarea>
-                <button type="submit" id="submit-btn">Send Request</button>
-            </form>
-            
-            <div id="response-area" style="margin-top: 20px; display: none;">
-                <div class="message-box" id="response-message"></div>
+        <div class="nav-links">
+            <a href="/dashboard/">Go to Operational Dashboard →</a>
+        </div>
+        <div class="user-profile">
+            <span style="color: white; font-size: 18px;">🔔</span>
+            <div class="avatar"></div>
+            <span style="color: white; font-size: 12px;">▼</span>
+        </div>
+    </nav>
+
+    <div class="single-page-layout">
+        <aside class="request-panel">
+            <h2>NEW CUSTOMER REQUEST</h2>
+            <div class="glass-card form-container">
+                <div class="ai-header">
+                    <span class="ai-icon">🤖</span>
+                    <p>How can we help you back home?</p>
+                </div>
+                <form id="request-form">
+                    <textarea id="user-input" rows="4" placeholder="Type your request here..." required></textarea>
+                    <button type="submit" id="submit-btn" class="gold-btn">SUBMIT REQUEST</button>
+                </form>
+                <div id="response-area" class="response-area" style="margin-top: 15px;">
+                    <p id="response-message" style="font-size: 14px;"></p>
+                </div>
             </div>
-        </div>
+            <div class="decorative-map"></div>
+        </aside>
     </div>
 
     <script src="{% static 'js/api.js' %}"></script>

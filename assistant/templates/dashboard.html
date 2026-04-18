@@ -4,19 +4,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vunoh - Employee Dashboard</title>
+    <title>Vunoh Global - Operational Dashboard</title>
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
 </head>
 <body>
-    <div class="container" style="max-width: 1000px;">
-        <div style="display: flex; justify-content: space-between; align-items: center;">
-            <h1>Employee Dashboard</h1>
-            <a href="/" style="color: var(--primary);">Back to Client Input</a>
+    <nav class="top-nav">
+        <div class="logo-area">
+            <span class="logo-icon">❖</span> VUNOH
         </div>
-        
-        <div id="tasks-container">
-            <p>Loading tasks...</p>
+        <div class="nav-links">
+            <a href="/">← Back to Customer Request</a>
         </div>
+        <div class="user-profile">
+            <span style="color: white; font-size: 18px;">🔔</span>
+            <div class="avatar"></div>
+            <span style="color: white; font-size: 12px;">▼</span>
+        </div>
+    </nav>
+
+    <div class="single-page-layout">
+        <main class="dashboard-panel">
+            <h2>OPERATIONAL DASHBOARD</h2>
+            <div id="tasks-container" class="tasks-list">
+                <p class="loading-text">Loading operations data...</p>
+            </div>
+        </main>
     </div>
 
     <script src="{% static 'js/dashboard.js' %}"></script>

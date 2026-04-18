@@ -21,7 +21,7 @@ def process_user_request(user_text, retries=3, delay=2):
         try:
             # Using 1.5-flash as it often has better availability during high demand
             response = client.models.generate_content(
-                model='gemini-1.5-flash',
+                model='gemini-2.5-flash',
                 contents=user_text,
                 config=types.GenerateContentConfig(
                     response_mime_type="application/json",
