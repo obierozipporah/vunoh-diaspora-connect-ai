@@ -1,24 +1,48 @@
-# Vunoh Global AI Assistant
 
-## Overview
-This is an AI-powered web application built to solve a specific, real-world problem for Kenyans living abroad. Often, members of the diaspora struggle to manage important tasks back home, relying on slow, informal channels like phone calls, word of mouth, or WhatsApp messages to relatives. Because these methods are unreliable and leave no audit trail when things go wrong, this platform provides a centralized, intelligent alternative. 
+# Vunoh Global - AI Assistant Platform
 
-The application acts as a smart assistant that helps customers seamlessly initiate, manage, and track essential core services from overseas.
+This is an AI-powered web application built for the Vunoh Global Internship Practical Test. It helps the Kenyan diaspora initiate and track tasks back home (like sending money, hiring services, or verifying documents) while providing an operational dashboard for employees to manage these requests.
 
-## What the Application Does
-The platform replaces disjointed communications with an intelligent, structured workflow designed for the diaspora context. Key capabilities include:
+## Tech Stack
 
-* **Natural Language Processing:** Users can type out their requests in plain English via a simple interface (e.g., requesting to send money, verify a land title, or hire a cleaner).
-* **Intelligent Intent Extraction:** The AI analyzes the user's message to instantly identify the specific service required and extracts crucial details (entities) such as the amount, recipient, location, or urgency.
-* **Automated Task Generation:** Once a request is understood, the system transforms it into a structured task complete with a unique tracking code, allowing users to easily follow up.
-* **Actionable Step Planning:** The AI maps out a logical sequence of specific steps required to fulfill the user's request (e.g., identity verification followed by transfer initiation for a money request).
-* **Contextual Risk Scoring:** The system automatically calculates a risk score for each request based on factors like high urgency, large financial amounts, or sensitive document types to ensure secure processing.
-* **Smart Employee Routing:** Tasks are automatically assigned to the correct operational department (such as Legal, Finance, or Operations) based on the extracted intent.
-* **Multi-Channel Communication Drafts:** The assistant automatically generates three distinct confirmation messages tailored to the formats customers actually use: a conversational WhatsApp message, a formal Email, and a concise SMS.
-* **Centralized Dashboard:** Users and administrators have access to a dashboard that displays all tasks, their statuses (Pending, In Progress, Completed), risk scores, and creation times in one clear view.
+The backend is built using Python with Django. For the frontend, I used Vanilla HTML, CSS, and JavaScript without any external frameworks. The database utilizes SQLite, and the AI Brain is powered by the Google Gemini API using the gemini-2.5-flash model.
 
-## How It Helps the User
-By transitioning from informal chats to an AI-driven platform, diaspora customers gain reliability and transparency. Instead of wondering if a relative completed an errand or if money reached the right person, the user submits a straightforward request and receives a structured task with a clear audit trail, risk assessment, and tracking code. This ensures that sending money, hiring local services, and verifying important documents are handled professionally and accountably.
+## Local Setup Instructions
+
+Follow these steps to run the application on your local machine.
+
+### 1. Create and activate a virtual environment
+
+If you are using Conda, create the environment and activate it using the commands below. If you are using standard Python venv, you can use python -m venv venv followed by source venv/bin/activate or venv\Scripts\activate on Windows.
+
+```bash
+conda create -n vunoh_env python=3.10
+conda activate vunoh_env
+
+### 2. Install the required dependencies
+Run the pip command to install Django, python-dotenv, and the Google GenAI SDK.
+
+Bash
+pip install django python-dotenv google-genai
+
+### 3. Set up your environment variables
+Create a new file named .env in the root folder of the project. Add your Gemini API key to it exactly as shown below.
+
+Plaintext
+GEMINI_API_KEY="your_actual_api_key_here"
+
+### 4. Setup the database
+Apply the migrations to create the SQLite database and the required tables.
+
+Bash
+python manage.py makemigrations
+python manage.py migrate
+
+### 5. Run the application
+Start the Django development server using the manage.py script. Once running, you can access the Customer Request Portal at http://127.0.0.1:8000/ and the Employee Dashboard at http://127.0.0.1:8000/dashboard/.
+
+Bash
+python manage.py runserver
 
 # Decisions I made and why
 ## AI Tools Used
