@@ -1,0 +1,34 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vunoh - Diaspora Assistant</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <div class="container">
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+            <h1>Vunoh Assistant</h1>
+            <a href="/dashboard" style="color: var(--primary);">Go to Dashboard</a>
+        </div>
+        
+        <div class="card">
+            <h2>How can we help you back home?</h2>
+            <p>Enter your request in plain English (e.g., "I need to send KES 15,000 to my mother in Kisumu urgently.")</p>
+            
+            <form id="request-form">
+                <textarea id="user-input" rows="4" placeholder="Type your request here..." required></textarea>
+                <button type="submit" id="submit-btn">Send Request</button>
+            </form>
+            
+            <div id="response-area" style="margin-top: 20px; display: none;">
+                <div class="message-box" id="response-message"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="{% static 'js/api.js' %}"></script>
+</body>
+</html>
