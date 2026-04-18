@@ -19,3 +19,16 @@ The platform replaces disjointed communications with an intelligent, structured 
 
 ## How It Helps the User
 By transitioning from informal chats to an AI-driven platform, diaspora customers gain reliability and transparency. Instead of wondering if a relative completed an errand or if money reached the right person, the user submits a straightforward request and receives a structured task with a clear audit trail, risk assessment, and tracking code. This ensures that sending money, hiring local services, and verifying important documents are handled professionally and accountably.
+
+# Decisions I made and why
+## AI Tools Used
+I used the Google Gemini API (gemini-2.5-flash) as the core AI Brain for the application because of its speed and its strong ability to reliably output structured JSON data. During development, I also used Gemini as a coding assistant to help scaffold the initial Django file structure and to brainstorm CSS grid layouts for the frontend dashboard.
+
+## System Prompt Engineering and Risk Scoring
+When I first built the prompt, the AI got lazy and started anchoring to the first intent on my list by categorizing everything as send_money. To fix this, I engineered the prompt to include strict conditional rules. Furthermore, I wrapped the user's input in a clear label before sending it to the API so the AI knew exactly what it was analyzing. For risk scoring, I baked the diaspora context directly into the prompt instructions. The AI was instructed to output an integer from 0 to 100 based on specific rules where land title verifications trigger a high risk due to the frequency of property fraud, while standard errands default to a low risk.
+
+## Overriding an AI Suggestion
+While building the Employee Dashboard, my AI coding assistant initially suggested keeping the customer input form and the dashboard on a single, unified page, and using a simple expanding accordion row to show task details. I overrode this suggestion entirely. I decided to separate the customer-facing input and the employee-facing dashboard into two distinct HTML pages to better reflect a real-world separation of concerns. Additionally, I scrapped the accordion rows and built a custom two-column CSS Grid layout with a dedicated side panel for task details, as it looks much more professional and is easier for an employee to read.
+
+## A Technical Hurdle I Resolved
+Midway through development, the application crashed with a ModuleNotFoundError and a 404 NOT_FOUND error when trying to communicate with the Gemini API. I discovered that Google had completely deprecated the old google.generativeai Python SDK and removed the gemini-1.5-flash model. To resolve this, I had to uninstall the old package, install the new google-genai SDK, and completely refactor my backend logic in llm_client.py. I updated the code to use the new genai.Client syntax, implemented GenerateContentConfig to force the JSON response formatting, and upgraded the model string to the currently supported gemini-2.5-flash. This got the system back online and parsing requests perfectly.
